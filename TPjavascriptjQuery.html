@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Définition d'un portail - Dimensions</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.qrcode.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/TPjavascriptjQuery.js"></script> 
+    </head>
+    <body>
+        <div class="content-wrapper mb-3">
+			<div class="container-fluid">
+                <div class="card mx-auto mt-3 mb-5">
+                    <div class="card-header">Caractéristique d'un portail</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="col-12" for="reference">Référence</label>
+                            <input class="form-control" type="text" id="reference" maxlength="50" placeholder="Entrer une référence"/>
+                            <span id="erreurReference"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-12" for="description">Description</label>
+                            <input class="form-control" type="text" id="description" maxlength="100" placeholder="Entrer une description"/>
+                            <span id="erreurDescription"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="nbVantaux">Nombre de vantaux</label>
+                            <div class="row" style="margin: auto;">
+                                <div class="col-4">
+                                    <input type="radio" class="form-check-input" name="nbVantaux" value="Gauche" checked>
+                                    <label class="form-check-label" for="Gauche">Un ventail gauche</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="radio" class="form-check-input" name="nbVantaux" value="GaucheDroit"/>
+                                    <label class="form-check-label" for="GaucheDroite">Deux ventaux</label>
+                                </div>
+                                <div class="col-4">
+                                    <input type="radio" class="form-check-input" name="nbVantaux" value="Droit"/>
+                                    <label class="form-check-label" for="Droit">Un ventail droit</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-12" for="nbTraverses">Nombre de traverses</label>
+                            <select class="form-control" id="nbTraverses">
+                                <option value=""></option>
+                                <option value="2">2 traverses (la traverse basse, la traverse haute)</option>
+                                <option value="3">3 traverses</option>
+                                <option value="4">4 traverses</option>
+                                <option value="5">5 traverses</option>
+                            </select>
+                            <span id="erreurNbTraverses"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <img id="img" src="img/Cemsas.gif"/>
+                </div>
+                
+                <div class="card mx-auto mt-5 mb-5">
+                    <div class="card-header">Dimension en mm</div>
+                    <div class="card-body">
+                        <table style="margin: auto;">
+                            <tr>
+                                <td class="border">Lg</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="lg" maxlength="100"/></td>
+                                <td class="border text-center">Ld</td>
+                                <td class="border" colspan="4"><input class="form-control" type="number" min=0 id="ld"  maxlength="100" disabled/></td>
+                            </tr>
+                            <tr>
+                                <td class="border">H1</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="h1" maxlength="100" disabled/></td>
+                                <td class="border">Battue</td>
+                                <td class="border">
+                                    <select class="form-control" id="battue" disabled>
+                                        <option value="aucune">Aucune</option>
+                                        <option value="gauche">Gauche</option>
+                                        <option value="droite">Droite</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border">H2</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="h2" maxlength="100" disabled/></td>
+                                <td class="border"></td>
+                                <td class="border"></td>
+                            </tr>
+                            <tr>
+                                <td class="border">H3</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="h3" maxlength="100" disabled/></td>
+                                <td class="border"></td>
+                                <td class="border"></td>
+                            </tr>
+                            <tr>
+                                <td class="border">H4</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="h4" maxlength="100" disabled/></td>
+                                <td class="border"></td>
+                                <td class="border"></td>
+                            </tr>
+                            <tr>
+                                <td class="border">H5</td>
+                                <td class="border" colspan="2"><input class="form-control" type="number" min=0 id="h5" maxlength="100" disabled/></td>
+                                <td class="border"></td>
+                                <td class="border"></td>
+                            </tr>
+                        </table>
+                        <span id="erreurDimension"></span>
+                        <span id="erreurNum"></span>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary btn-block" type="submit" id="qrcode">Générer le QRCode</button>
+
+                <div class="modal fade" id="modalQRCode" tabindex="-1" role="dialog" aria-labelledby="modalQRCodeLabel" aria-hidden="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalQRCodeLabel">Votre QRCode</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group text-center" id="modalBody"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
